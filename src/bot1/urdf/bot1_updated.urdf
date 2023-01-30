@@ -1,0 +1,1311 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<robot
+  name="bot1">
+
+  <material name="black">
+    <color rgba="0.0 0.0 0.0 1.0"/>
+  </material>
+
+  <material name="blue">
+    <color rgba="0.0 0.0 0.8 1.0"/>
+  </material>
+
+  <material name="green">
+    <color rgba="0.0 0.8 0.0 1.0"/>
+  </material>
+
+  <material name="grey">
+    <color rgba="0.3 0.3 0.3 1.0"/>
+  </material>
+
+  <material name="orange">
+    <color rgba="1 0.4 0.1 1"/>
+  </material>
+
+  <material name="red">
+    <color rgba="0.8 0.0 0.0 1.0"/>
+  </material>
+
+  <material name="white">
+    <color rgba="1.0 1.0 1.0 1.0"/>
+  </material>
+
+  <material name="yellow">
+    <color rgba="0.9 0.9 0 1.0"/>
+  </material>
+
+  <material name="cyan">
+    <color rgba="0.4 0.7 1 1.0"/>
+  </material>
+
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.045732 0.09332 1.1107E-16"
+        rpy="0 0 0" />
+      <mass
+        value="2.0304" />
+      <inertia
+        ixx="0.072006"
+        ixy="-0.00042676"
+        ixz="-3.7413E-17"
+        iyy="0.092836"
+        iyz="-5.2298E-18"
+        izz="0.036075" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bot1/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="orange">
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bot1/meshes/base_link.STL" scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="B">
+    <inertial>
+      <origin
+        xyz="0.005 0.1 2.2811E-17"
+        rpy="0 0 0" />
+      <mass
+        value="0.76" />
+      <inertia
+        ixx="0.011679"
+        ixy="1.0729E-20"
+        ixz="1.7754E-20"
+        iyy="0.0091517"
+        iyz="1.7658E-19"
+        izz="0.0025397" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0.175 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bot1/meshes/B.STL" />
+      </geometry>
+      <material
+        name="yellow">
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.175 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bot1/meshes/B.STL" />
+      </geometry>
+        <surface>
+         <bounce>
+          <restitution_coefficient>-0.5</restitution_coefficient>
+          <threshold>1000</threshold>
+         </bounce>
+         <contact>
+          <ode>
+           <max_vel>0</max_vel>
+          </ode>
+         </contact>
+        </surface>
+    </collision>
+  </link>
+  <joint
+    name="BJ"
+    type="prismatic">
+    <origin
+      xyz="-0.175 0 0.001"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="B" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="-0.15"
+      upper="0"
+      effort="1000"
+      velocity="0.1" />
+    <!--safety_controller
+      k_velocity="0" /-->
+  </joint>
+  <link
+    name="FRW">
+    <inertial>
+      <origin
+        xyz="-2.7756E-17 -3.7636E-05 -0.048156"
+        rpy="0 0 0" />
+      <mass
+        value="0.16694" />
+      <inertia
+        ixx="0.00011342"
+        ixy="0"
+        ixz="2.647E-21"
+        iyy="0.00011354"
+        iyz="-6.1853E-08"
+        izz="0.00019663" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bot1/meshes/FRW.STL" />
+      </geometry>
+      <material
+        name="grey">
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bot1/meshes/FRW.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FRWJ"
+    type="continuous">
+    <origin
+      xyz="0.095 -0.17 0.047"
+      rpy="1.5707963267949 0.39309481042652 -3.14159265358979" />
+    <parent
+      link="base_link" />
+    <child
+      link="FRW" />
+    <axis
+      xyz="0 0 1" />
+    <!--safety_controller
+      k_velocity="0" /-->
+  </joint>
+  <link
+    name="RRW">
+    <inertial>
+      <origin
+        xyz="0 -3.7636E-05 -0.048156"
+        rpy="0 0 0" />
+      <mass
+        value="0.16694" />
+      <inertia
+        ixx="0.00011342"
+        ixy="1.0164E-20"
+        ixz="2.6933E-21"
+        iyy="0.00011354"
+        iyz="-6.1853E-08"
+        izz="0.00019663" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bot1/meshes/RRW.STL" />
+      </geometry>
+      <material
+        name="grey">
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bot1/meshes/RRW.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RRWJ"
+    type="continuous">
+    <origin
+      xyz="-0.065 -0.17 0.047"
+      rpy="1.5707963267949 0.393094810426521 -3.14159265358979" />
+    <parent
+      link="base_link" />
+    <child
+      link="RRW" />
+    <axis
+      xyz="0 0 1" />
+    <!--safety_controller
+      k_velocity="0" /-->
+  </joint>
+  <link
+    name="FLW">
+    <inertial>
+      <origin
+        xyz="1.3878E-17 -3.7636E-05 -0.048156"
+        rpy="0 0 0" />
+      <mass
+        value="0.16694" />
+      <inertia
+        ixx="0.00011342"
+        ixy="-3.1238E-22"
+        ixz="-9.8323E-22"
+        iyy="0.00011354"
+        iyz="-6.1853E-08"
+        izz="0.00019663" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bot1/meshes/FLW.STL" />
+      </geometry>
+      <material
+        name="grey">
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bot1/meshes/FLW.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FLWJ"
+    type="continuous">
+    <origin
+      xyz="0.095 0.17 0.047"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="FLW" />
+    <axis
+      xyz="0 0 -1" />
+    <!--safety_controller
+      k_velocity="0" /-->
+  </joint>
+  <link
+    name="RLW">
+    <inertial>
+      <origin
+        xyz="0 -3.7636E-05 -0.048156"
+        rpy="0 0 0" />
+      <mass
+        value="0.16694" />
+      <inertia
+        ixx="0.00011342"
+        ixy="-2.065E-22"
+        ixz="-9.8323E-22"
+        iyy="0.00011354"
+        iyz="-6.1853E-08"
+        izz="0.00019663" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bot1/meshes/RLW.STL" />
+      </geometry>
+      <material
+        name="grey">
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bot1/meshes/RLW.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RLWJ"
+    type="continuous">
+    <origin
+      xyz="-0.065 0.17 0.047"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="RLW" />
+    <axis
+      xyz="0 0 -1" />
+    <!--safety_controller
+      k_velocity="0" /-->
+  </joint>
+
+### <!--removed cameras--> ###
+
+  <!--link
+    name="RC">
+    <inertial>
+      <origin
+        xyz="0.015 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.075" />
+      <inertia
+        ixx="3.125E-05"
+        ixy="-1.6263E-22"
+        ixz="4.2352E-22"
+        iyy="2.125E-05"
+        iyz="-1.0334E-21"
+        izz="2.125E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bot1/meshes/RC.STL" />
+      </geometry>
+      <material
+        name="blue">
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bot1/meshes/RC.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RCJ"
+    type="fixed">
+    <origin
+      xyz="0.03 -0.23 0.125"
+      rpy="1.5707963267949 1.57 3.14" />
+    <parent
+      link="base_link" />
+    <child
+      link="RC" />
+    <axis
+      xyz="0 0 0" />
+    <safety_controller
+      k_velocity="0" />
+  </joint-->
+  <!--link
+    name="LC">
+    <inertial>
+      <origin
+        xyz="0.015 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.075" />
+      <inertia
+        ixx="3.125E-05"
+        ixy="1.6263E-22"
+        ixz="-4.2352E-22"
+        iyy="2.125E-05"
+        iyz="-1.0334E-21"
+        izz="2.125E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bot1/meshes/LC.STL" />
+      </geometry>
+      <material
+        name="blue">
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bot1/meshes/LC.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LCJ"
+    type="fixed">
+    <origin
+      xyz="0.03 0.20 0.125"
+      rpy="0 0 -4.71" />
+    <parent
+      link="base_link" />
+    <child
+      link="LC" />
+    <axis
+      xyz="0 0 0" />
+    <safety_controller
+      k_velocity="0" />
+  </joint-->
+  <link
+    name="RA">
+    <inertial>
+      <origin
+        xyz="0.064226 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.11493" />
+      <inertia
+        ixx="1.7546E-05"
+        ixy="1.3293E-21"
+        ixz="-5.3917E-21"
+        iyy="0.0001712"
+        iyz="-2.9655E-21"
+        izz="0.00017089" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bot1/meshes/RA.STL" />
+      </geometry>
+      <material
+        name="grey">
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bot1/meshes/RA.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RAJ"
+    type="fixed">
+    <origin
+      xyz="0.175 -0.185 0.055"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="RA" />
+    <axis
+      xyz="0 0 0" />
+    <safety_controller
+      k_velocity="0" />
+  </joint>
+  <link
+    name="RF">
+    <inertial>
+      <origin
+        xyz="0.075327 6.9389E-18 0.0052437"
+        rpy="0 0 0" />
+      <mass
+        value="0.30" />
+      <inertia
+        ixx="0.00030103598"
+        ixy="1.4257738813E-20"
+        ixz="-5.7494106282E-05"
+        iyy="0.00084734699"
+        iyz="3.70703646775E-20"
+        izz="0.00112250746" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="-0.31 -0.05 -0.185"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bot1/meshes/RF.STL" />
+      </geometry>
+      <material
+        name="cyan">
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="-0.31 -0.05 -0.185"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bot1/meshes/RF.STL" />
+      </geometry>
+        <surface>
+         <bounce>
+          <restitution_coefficient>0.9</restitution_coefficient>
+          <threshold>0</threshold>
+         </bounce>
+         <contact>
+          <ode>
+           <max_vel>10</max_vel>
+          </ode>
+         </contact>
+        </surface>
+    </collision>
+  </link>
+  <joint
+    name="RFJ"
+    type="revolute">
+    <origin
+      xyz="0.135 0 0"
+      rpy="0 0.7854 0" />
+    <parent
+      link="RA" />
+    <child
+      link="RF" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-1.5"
+      upper="0.2"
+      effort="100"
+      velocity="0.3" />
+    <!--safety_controller
+      k_velocity="0" /-->
+  </joint>
+  <link
+    name="LA">
+    <inertial>
+      <origin
+        xyz="0.064226 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.11493" />
+      <inertia
+        ixx="1.7546E-05"
+        ixy="5.6286E-21"
+        ixz="2.0529E-21"
+        iyy="0.0001712"
+        iyz="-2.9655E-21"
+        izz="0.00017089" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="-0.175 -0.055 0.185"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bot1/meshes/LA.STL" />
+      </geometry>
+      <material
+        name="grey">
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="-0.175 -0.055 0.185"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bot1/meshes/LA.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LAJ"
+    type="fixed">
+    <origin
+      xyz="0.175 0.185 0.055"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="LA" />
+    <axis
+      xyz="0 0 0" />
+    <safety_controller
+      k_velocity="0" />
+  </joint>
+  <link
+    name="LF">
+    <inertial>
+      <origin
+        xyz="0.075327 6.9389E-18 0.0052437"
+        rpy="0 0 0" />
+      <mass
+        value="0.35" />
+      <inertia
+        ixx="0.00030103598"
+        ixy="1.4257738813E-20"
+        ixz="-5.7494106282E-05"
+        iyy="0.00084734699"
+        iyz="1.6293165708E-20"
+        izz="0.00112250746" />
+    </inertial>
+      <!--inertia
+        ixx="0.00024699"
+        ixy="2.7087022344E-20"
+        ixz="-4.7172E-05"
+        iyy="0.00069522"
+        iyz="-1.3368E-20"
+        izz="0.00092098" />
+    </inertial-->
+    <visual>
+      <origin
+        xyz="-0.31 -0.05 0.185"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bot1/meshes/LF.STL" />
+      </geometry>
+      <material
+        name="cyan">
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="-0.31 -0.05 0.185"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bot1/meshes/LF.STL" />
+      </geometry>
+        <surface>
+         <bounce>
+          <restitution_coefficient>0.9</restitution_coefficient>
+          <threshold>0</threshold>
+         </bounce>
+         <contact>
+          <ode>
+           <max_vel>10</max_vel>
+          </ode>
+         </contact>
+        </surface>
+    </collision>
+  </link>
+  <joint
+    name="LFJ"
+    type="revolute">
+    <origin
+      xyz="0.135 0 0"
+      rpy="0 -0.64739 0" />
+    <parent
+      link="LA" />
+    <child
+      link="LF" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-0.34"
+      upper="1.36"
+      effort="100"
+      velocity="0.3" />
+    <mimic
+      joint="RFJ" multiplier="-1" offset="0"/>
+    <!--safety_controller
+      k_velocity="0" /-->
+  </joint>
+  <link
+    name="F">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="-0.165 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bot1/meshes/F.STL" />
+      </geometry>
+      <material
+        name="yellow">
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bot1/meshes/F.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FJ"
+    type="prismatic">
+    <origin
+      xyz="0.165 0 0.001"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="F" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="-0.18"
+      upper="0"
+      effort="10"
+      velocity="0.05" />
+    <!--safety_controller
+      k_velocity="0" /-->
+  </joint>
+  <link
+    name="FC">
+    <inertial>
+      <origin
+        xyz="0.015 0 1.3105E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.075" />
+      <inertia
+        ixx="3.125E-05"
+        ixy="5.4323E-22"
+        ixz="-2.4651E-36"
+        iyy="2.125E-05"
+        iyz="-1.8149E-21"
+        izz="2.125E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bot1/meshes/FC.STL" />
+      </geometry>
+      <material
+        name="blue">
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bot1/meshes/FC.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FCJ"
+    type="fixed">
+    <origin
+      xyz="0.01 0.275 0"
+      rpy="-1.57 0 0" />
+    <parent
+      link="F" />
+    <child
+      link="FC" />
+    <axis
+      xyz="0 0 0" />
+    <!--safety_controller
+      k_velocity="0" /-->
+  </joint>
+  <link
+    name="L">
+    <inertial>
+      <origin
+        xyz="0.025 1.3878E-17 1.1371E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.075" />
+      <inertia
+        ixx="3.125E-05"
+        ixy="2.5429E-36"
+        ixz="-5.8031E-37"
+        iyy="2.125E-05"
+        iyz="-2.9499E-21"
+        izz="2.125E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bot1/meshes/L.STL" />
+      </geometry>
+      <material
+        name="green">
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bot1/meshes/L.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LJ"
+    type="fixed">
+    <origin
+      xyz="0 0.05 0"
+      rpy="0 0 0" />
+    <parent
+      link="F" />
+    <child
+      link="L" />
+    <axis
+      xyz="0 0 0" />
+    <!--safety_controller
+      k_velocity="0" /-->
+  </joint>
+  
+  <!--LiDAR-->
+  <link name="hokuyo_link">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    <box size="0.1 0.1 0.1"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://bot1/meshes/hokuyo.dae"/>
+      </geometry>
+    </visual>
+
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+
+  <joint name="hokuyo_joint" type="fixed">
+    <origin
+      xyz="0.04 0.05 0"
+      rpy="-1.57 0 0" />
+    <parent
+      link="F" />
+	<child link="hokuyo_link"/>
+    <axis
+      xyz="0 1 0" />
+    <!-- <safety_controller
+      k_velocity="0" /> -->
+  </joint>
+
+   <gazebo reference="hokuyo_link">
+    <sensor type="ray" name="head_hokuyo_sensor">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>40</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>21</samples>
+            <resolution>1</resolution>
+            <min_angle>-0.000001</min_angle>
+            <max_angle>0.000001</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.20</min>
+          <max>3.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <!-- Noise parameters based on published spec for Hokuyo laser
+               achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+               stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+               reading. -->
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+        <topicName>/umic_bot/laser/scan</topicName>
+        <frameName>hokuyo_link</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+	<!--SONAR-->
+ <joint name="sonar_front_joint" type="fixed">
+    <origin
+      xyz="0.13 0.015 -0.02"
+      rpy="3.1415926 0 -1.570796326" />
+    <parent
+      link="LA" />
+	<child link="sonar_link"/>
+    <axis
+      xyz="0 1 0" />
+</joint>
+<link name="sonar_link">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.01 0.01 0.01"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.01 0.01 0.01"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+ </link>
+ 
+ <!--SONAR PLUGIN-->
+ 
+ <gazebo reference="sonar_link">        
+   <sensor type="ray" name="TeraRanger">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>50</update_rate>
+      <ray>
+         <scan>
+            <horizontal>
+               <samples>10</samples>
+               <resolution>1</resolution> 
+               <min_angle>-0.14835</min_angle>
+               <max_angle>0.14835</max_angle>
+            </horizontal>
+            <!-- <vertical>
+               <samples>10</samples>
+               <resolution>1</resolution> 
+               <min_angle>-0.14835</min_angle>
+               <max_angle>0.14835</max_angle> 
+            </vertical> -->
+         </scan>
+         <range>
+            <min>0.01</min>
+            <max>2</max>
+            <resolution>0.001</resolution>
+         </range>
+      </ray>
+      <plugin filename="libgazebo_ros_range.so" name="gazebo_ros_range">
+         <gaussianNoise>0.001</gaussianNoise>
+         <alwaysOn>true</alwaysOn>
+         <updateRate>50</updateRate>
+         <topicName>sensor/sonar_front</topicName>
+         <frameName>base_ir_front</frameName>
+         <radiation>INFRARED</radiation>
+         <fov>0.2967</fov>
+      </plugin>
+   </sensor>  
+   </gazebo>
+
+  <!--mimic plugin-->
+   <mimic_joint_plugin_gazebo
+      name_prefix="LFJ"
+      parent_joint="RFJ" mimic_joint="LFJ"
+      multiplier="-1.0"
+      max_effort="100.0" />
+   <gazebo>
+    <plugin name="mimic_joint_plugin" filename="libroboticsgroup_gazebo_mimic_joint_plugin.so">
+     <joint>RFJ</joint>
+     <mimicJoint>LFJ</mimicJoint>
+     <multiplier>-1</multiplier>
+     <offset>0</offset>
+     <maxEffort>100.0</maxEffort>
+    </plugin>
+   </gazebo> 
+	
+	<!--camera plugins-->
+  <gazebo reference="FC">
+    <material>Gazebo/Green</material>
+    <sensor type="camera" name="cameraFC">
+      <update_rate>30.0</update_rate>
+      <camera name="front_cam">
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>800</width>
+          <height>800</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0.0</updateRate>
+        <cameraName>mybot/camera1</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>camera</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
+  </gazebo>
+   
+
+  <!--Physical parameters-->
+    <gazebo reference="FLW">
+      <mu1 value="10000000.0"/>
+      <mu2 value="10000000.0"/>
+      <kp value="10000000.0" />
+      <kd value="1.0" />
+    </gazebo>  
+
+    <gazebo reference="FLW">
+      <mu1 value="1000000.0"/>
+      <mu2 value="1000000.0"/>
+      <kp value="10000000.0" />
+      <kd value="1.0" />
+    </gazebo>  
+
+    <gazebo reference="FLW">
+      <mu1 value="1000000.0"/>
+      <mu2 value="1000000.0"/>
+      <kp value="10000000.0" />
+      <kd value="1.0" />
+    </gazebo>  
+
+    <gazebo reference="FLW">
+      <mu1 value="1000000.0"/>
+      <mu2 value="1000000.0"/>
+      <kp value="10000000.0" />
+      <kd value="1.0" />
+    </gazebo>  
+
+  <!--Differential_Transmissions-->
+    <transmission name="FLW_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="FLW_wheel_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+      <joint name="FLWJ">
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      </joint>
+    </transmission>
+
+    <transmission name="FRW_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="FRW_wheel_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+      <joint name="FRWJ">
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      </joint>
+    </transmission>
+
+    <transmission name="RLW_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="RLW_wheel_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+      <joint name="RLWJ">
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      </joint>
+    </transmission>
+
+    <transmission name="RRW_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="RRW_wheel_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+      <joint name="RRWJ">
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      </joint>
+    </transmission>
+
+  <!--Gates_Transmission-->
+    <transmission name="Front_Gate_Trans" type="SimpleTransmission">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="Front_Gate_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+      <joint name="FJ">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+    </transmission>
+
+    <transmission name="Back_Gate_Trans" type="SimpleTransmission">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="Back_Gate_Motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+      <joint name="BJ">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+    </transmission>
+
+  <!--Flaps Transmission-->
+    <transmission name="left_flap_Trans" type="SimpleTransmission">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="left_flap_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+      <joint name="LFJ">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+    </transmission>
+
+    <transmission name="right_flap_Trans" type="SimpleTransmission">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="right_flap_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+      <joint name="RFJ">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+    </transmission>
+   
+  <!-- Gazebo plugin for ROS Control -->
+   <gazebo>
+     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+     </plugin>
+   </gazebo>
+
+   <gazebo reference="base_link">
+   <visual>
+     <material>
+       <ambient>${170.0/255.0} ${5.0/255.0} ${5.0/255.0} 1.0</ambient>
+       <diffuse>${170.0/255.0} ${5.0/255.0} ${5.0/255.0} 1.0</diffuse>
+       <specular>${170.0/255.0} ${5.0/255.0} ${5.0/255.0} 1.0</specular>
+       <emissive>0.0 0.0 0.0 0.0</emissive>
+     </material>
+   </visual>
+ </gazebo>
+
+ <gazebo reference="B">
+  <visual>
+    <material>
+      <ambient>${185.0/255.0} ${125.0/255.0} ${16.0/255.0} 1.0</ambient>
+      <diffuse>${185.0/255.0} ${125.0/255.0} ${16.0/255.0} 1.0</diffuse>
+      <specular>${185.0/255.0} ${125.0/255.0} ${16.0/255.0} 1.0</specular>
+      <emissive>0.0 0.0 0.0 0.0</emissive>
+    </material>
+  </visual>
+</gazebo>
+
+<gazebo reference="F">
+  <visual>
+    <material>
+      <ambient>${185.0/255.0} ${125.0/255.0} ${16.0/255.0} 1.0</ambient>
+      <diffuse>${185.0/255.0} ${125.0/255.0} ${16.0/255.0} 1.0</diffuse>
+      <specular>${185.0/255.0} ${125.0/255.0} ${16.0/255.0} 1.0</specular>
+      <emissive>0.0 0.0 0.0 0.0</emissive>
+    </material>
+  </visual>
+</gazebo>
+
+<gazebo reference="LF">
+  <visual>
+    <material>
+      <ambient>${103.0/255.0} ${199.0/255.0} ${235.0/255.0} 1.0</ambient>
+      <diffuse>${103.0/255.0} ${199.0/255.0} ${235.0/255.0} 1.0</diffuse>
+      <specular>${103.0/255.0} ${199.0/255.0} ${235.0/255.0} 1.0</specular>
+      <emissive>0.0 0.0 0.0 0.0</emissive>
+    </material>
+  </visual>
+</gazebo>
+
+<gazebo reference="RF">
+  <visual>
+    <material>
+      <ambient>${103.0/255.0} ${199.0/255.0} ${235.0/255.0} 1.0</ambient>
+      <diffuse>${103.0/255.0} ${199.0/255.0} ${235.0/255.0} 1.0</diffuse>
+      <specular>${103.0/255.0} ${199.0/255.0} ${235.0/255.0} 1.0</specular>
+      <emissive>0.0 0.0 0.0 0.0</emissive>
+    </material>
+  </visual>
+</gazebo>
+
+<gazebo reference="FLW">
+  <visual>
+    <material>
+      <ambient>0 0 0 1.0</ambient>
+      <diffuse>0 0 0 1.0</diffuse>
+      <specular>0 0 0 1.0</specular>
+      <emissive>0.0 0.0 0.0 0.0</emissive>
+    </material>
+  </visual>
+</gazebo>
+
+<gazebo reference="FRW">
+  <visual>
+    <material>
+      <ambient>0 0 0 1.0</ambient>
+      <diffuse>0 0 0 1.0</diffuse>
+      <specular>0 0 0 1.0</specular>
+      <emissive>0.0 0.0 0.0 0.0</emissive>
+    </material>
+  </visual>
+</gazebo>
+
+<gazebo reference="RLW">
+  <visual>
+    <material>
+      <ambient>0 0 0 1.0</ambient>
+      <diffuse>0 0 0 1.0</diffuse>
+      <specular>0 0 0 1.0</specular>
+      <emissive>0.0 0.0 0.0 0.0</emissive>
+    </material>
+  </visual>
+</gazebo>
+
+<gazebo reference="RRW">
+  <visual>
+    <material>
+      <ambient>0 0 0 1.0</ambient>
+      <diffuse>0 0 0 1.0</diffuse>
+      <specular>0 0 0 1.0</specular>
+      <emissive>0.0 0.0 0.0 0.0</emissive>
+    </material>
+  </visual>
+</gazebo>
+
+<gazebo reference="RRW">
+  <visual>
+    <material>
+      <ambient>0 0 0 1.0</ambient>
+      <diffuse>0 0 0 1.0</diffuse>
+      <specular>0 0 0 1.0</specular>
+      <emissive>0.0 0.0 0.0 0.0</emissive>
+    </material>
+  </visual>
+</gazebo>
+
+</robot>

@@ -1,0 +1,30 @@
+<launch>
+  <arg name="model" default="$(find bot1)/urdf/bot1.urdf"/>
+  <!--arg name="rvizconfig" default="$(find bot1)/urdf/urdf.rviz" /-->
+
+  <include file="$(find bot1)/launch/gazebo.launch">
+    <arg name="model" value="$(arg model)" />
+  </include>
+
+  <!--node name="rviz" pkg="rviz" type="rviz" args="-d $(arg model)" /-->
+
+  <rosparam command="load"
+            file="$(find bot1)/config/joints.yaml"
+            ns="bot1_joint_state_controller" />
+
+  <rosparam command="load"
+            file="$(find bot1)/config/differential.yaml"
+            ns="bot1_diffdrive_controller" />
+
+  <node name="umic_controller_spawner" pkg="controller_manager" type="spawner"
+    args="bot1_joint_state_controller
+	  bot1_diffdrive_controller
+          --shutdown-timeout 3"/>
+
+
+
+  <!--node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
+    <param name="default_topic" value="/bot1_diffdrive_controller/cmd_vel"/>
+  </node-->
+
+</launch>
