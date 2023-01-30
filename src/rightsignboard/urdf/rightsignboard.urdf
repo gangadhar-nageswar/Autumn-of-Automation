@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="rightsignboard">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.501206142003569 0.533493340092548 0.955989392306853"
+        rpy="0 0 0" />
+      <mass
+        value="0.376991118430775" />
+      <inertia
+        ixx="0.0452483589896538"
+        ixy="-4.37113987215494E-36"
+        ixz="0"
+        iyy="1.88495559215388E-05"
+        iyz="7.2090268449749E-36"
+        izz="0.0452483589896538" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rightsignboard/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rightsignboard/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="board">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="2.51327412287184" />
+      <inertia
+        ixx="0.0252165170328141"
+        ixy="0"
+        ixz="-9.8742983436636E-20"
+        iyy="0.0252165170328141"
+        iyz="-2.6432213225686E-20"
+        izz="0.0502654824574367" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rightsignboard/meshes/board.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rightsignboard/meshes/board.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="board_pole"
+    type="fixed">
+    <origin
+      xyz="0.50392 -0.95557 1.3333"
+      rpy="-1.5708 -1.047 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="board" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="arrow">
+    <inertial>
+      <origin
+        xyz="0 0.0358640080777433 0.000500000000000056"
+        rpy="0 0 0" />
+      <mass
+        value="0.0172090665860726" />
+      <inertia
+        ixx="6.76460178272663E-05"
+        ixy="9.53471459751443E-21"
+        ixz="1.0767775518146E-23"
+        iyy="1.05786840133252E-05"
+        iyz="-4.12050040410395E-23"
+        izz="7.82218336628272E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rightsignboard/meshes/arrow.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rightsignboard/meshes/arrow.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="arr_board"
+    type="fixed">
+    <origin
+      xyz="-0.026156 0.016188 0.0105"
+      rpy="0 0 -2.0946" />
+    <parent
+      link="board" />
+    <child
+      link="arrow" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>

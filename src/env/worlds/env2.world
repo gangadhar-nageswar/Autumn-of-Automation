@@ -1,0 +1,697 @@
+<?xml version="1.0" ?>
+<sdf version='1.6'>
+  <world name='default'>
+    <model name='ground_plane'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+    </model>
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose frame=''>0 0 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.5 -1</direction>
+    </light>
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose frame=''>6.93093 -0.894646 3.54449 -0 0.203643 0.10418</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+    <road name='road_main'>
+      
+      <width>5</width>
+      <point>0 0 0.0001</point>
+      <point>25 0 0.0001</point>
+      <point>25 -25 0.0001</point>
+      <point>50 -25 0.0001</point>
+    
+    </road>
+    
+    <!--/road>
+    <road name='road_for_left'>
+      <width>5</width>
+      <point>25 -25 0.01</point>
+      <point>25 25 0.01</point>
+    </road>
+    <road name='road_for_right'>
+      <width>5</width>
+      <point>20 -25 0.01</point>
+      <point>50 -25 0.01</point>
+    </road>
+    <road name='road_for_straight'>
+      <width>5</width>
+      <point>25 25 0.01</point>
+      <point>25 50 0.01</point>
+    </road-->
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <physics name='default_physics' default='0' type='ode'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+      <shadows>1</shadows>
+    </scene>
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>0</latitude_deg>
+      <longitude_deg>0</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+    <model name='leftsignboard'>
+      <static>1</static>
+      <link name='base_link'>
+        <!-- <static>1</static> -->
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0.503539 -0.762483 1.28431 0 -0 0</pose>
+          <mass>2.90639</mass>
+          <inertia>
+            <ixx>0.844719</ixx>
+            <ixy>0.00130863</ixy>
+            <ixz>-0.000332576</ixz>
+            <iyy>0.0970493</iyy>
+            <iyz>0.184312</iyz>
+            <izz>0.798076</izz>
+          </inertia>
+        </inertial>
+        <collision name='base_link_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1.4 1 1</scale>
+###              <uri>/home/aryan/final_ws/src/leftsignboard/meshes/base_link.STL</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='base_link_fixed_joint_lump__board_collision_1'>
+          <pose frame=''>0.50392 -0.95557 1.3333 -1.5708 -1.047 -3.14159</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+###              <uri>/home/aryan/final_ws/src/leftsignboard/meshes/board.STL</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <collision name='base_link_fixed_joint_lump__arrow_collision_2'>
+          <pose frame=''>0.528584 -0.96657 1.3238 1.5708 7e-06 4e-06</pose>
+          <geometry>
+            <mesh>
+              <scale>1.4 1.5 1.5</scale>
+###              <uri>/home/aryan/final_ws/src/leftsignboard/meshes/arrow.STL</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='base_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+###              <uri>/home/aryan/final_ws/src/leftsignboard/meshes/base_link.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__board_visual_1'>
+          <pose frame=''>0.50392 -0.95557 1.3333 -1.5708 -1.047 -3.14159</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+###              <uri>/home/aryan/final_ws/src/leftsignboard/meshes/board.STL</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Red</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__arrow_visual_2'>
+          <pose frame=''>0.528584 -0.96657 1.3238 1.5708 7e-06 4e-06</pose>
+          <geometry>
+            <mesh>
+              <scale>1.4 1.5 1.5</scale>
+###              <uri>/home/aryan/final_ws/src/leftsignboard/meshes/arrow.STL</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Yellow</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay/>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <pose frame=''>0 0 0 0 -0 0</pose>
+    </model>
+    <model name='forwardsignboard'>
+      <static>1</static>
+      <link name='base_link'>
+        <!-- <static>1</static> -->
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0.503605 -0.762487 1.28429 0 -0 0</pose>
+          <mass>2.90642</mass>
+          <inertia>
+            <ixx>0.844712</ixx>
+            <ixy>0.00134557</ixy>
+            <ixz>-0.000339855</ixz>
+            <iyy>0.0970445</iyy>
+            <iyz>0.184304</iyz>
+            <izz>0.798074</izz>
+          </inertia>
+        </inertial>
+        <collision name='base_link_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+###              <uri>/home/aryan/final_ws/src/forwardsignboard/meshes/base_link.STL</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='base_link_fixed_joint_lump__board_collision_1'>
+          <pose frame=''>0.503919 -0.955572 1.33327 -1.5708 -1.04695 3.14159</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+###              <uri>/home/aryan/final_ws/src/forwardsignboard/meshes/board.STL</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <collision name='base_link_fixed_joint_lump__arrow_collision_2'>
+          <pose frame=''>0.49526 -0.955572 1.32826 1.5708 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1.4 1.5 1.5</scale>
+###              <uri>/home/aryan/final_ws/src/forwardsignboard/meshes/arrow.STL</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='base_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+###              <uri>/home/aryan/final_ws/src/forwardsignboard/meshes/base_link.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__board_visual_1'>
+          <pose frame=''>0.503919 -0.955572 1.33327 -1.5708 -1.04695 3.14159</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+###              <uri>/home/aryan/final_ws/src/forwardsignboard/meshes/board.STL</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Blue</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__arrow_visual_2'>
+          <pose frame=''>0.49526 -0.955572 1.32826 1.5708 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1.4 1.5 1.5</scale>
+###              <uri>/home/aryan/final_ws/src/forwardsignboard/meshes/arrow.STL</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Red</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay/>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <pose frame=''>0 0 0 0 -0 0</pose>
+    </model>
+    <state world_name='default'>
+      <sim_time>355 602000000</sim_time>
+      <real_time>356 370447074</real_time>
+      <wall_time>1597226311 521336777</wall_time>
+      <iterations>355602</iterations>
+      <model name='forwardsignboard'>
+        <pose frame=''>21.004 -2.36671 -0.081625 -0.008569 0.002852 -1.56961</pose>
+        <scale>1 1 1</scale>
+        <link name='base_link'>
+          <pose frame=''>21.004 -2.36671 -0.081625 -0.008569 0.002852 -1.56961</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0.636995 -0.590876 -0.294261 -3.11606 -0.569481 -2.10249</acceleration>
+          <wrench>1.85138 -1.71733 -0.855247 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='ground_plane'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='leftsignboard'>
+        <pose frame=''>28.3633 -21.0369 0.070078 0.031744 -0.005565 3.10431</pose>
+        <scale>1 1 1</scale>
+        <link name='base_link'>
+          <pose frame=''>28.3633 -21.0369 0.070078 0.031744 -0.005565 3.10431</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>-0.57221 -0.631712 0.018335 3.03552 -0.422782 1.86392</acceleration>
+          <wrench>-1.66306 -1.836 0.053288 0 -0 0</wrench>
+        </link>
+      </model>
+      <light name='sun'>
+        <pose frame=''>0 0 10 0 -0 0</pose>
+      </light>
+    </state>
+
+
+    <model name="sphere">
+  <pose>1 0.05 0 0 0 0</pose>
+
+    <link name="link">
+    <inertial>
+        <mass>0.05</mass>
+        <inertia>
+          <ixx>1</ixx>
+          <iyy>1</iyy>
+          <izz>1</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+      <collision name="body_collision">
+        <geometry>
+          <sphere>
+            <radius>0.05</radius>
+          </sphere>
+        </geometry>
+      </collision>
+      <visual name="v1">
+
+        <material>
+            <ambient>1 0 0 1.0</ambient>
+            <diffuse>1 0 0 1.0</diffuse>
+            <specular>1 0 0 1.0</specular>
+            <emissive>1 0 0 1.0</emissive>
+          </material>
+        <geometry>
+          <sphere>
+            <radius>0.05</radius>
+          </sphere>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+
+
+  <model name="sphere">
+  <pose>3 0.05 0 0 0 0</pose>
+
+    <link name="link">
+    <inertial>
+        <mass>0.25</mass>
+        <inertia>
+          <ixx>0.00169</ixx>
+          <iyy>0.00169</iyy>
+          <izz>0.00169</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+      <collision name="body_collision">
+        <geometry>
+          <sphere>
+            <radius>0.05</radius>
+          </sphere>
+        </geometry>
+      </collision>
+      <visual name="v1">
+
+        <material>
+            <ambient>0 1 0 1.0</ambient>
+            <diffuse>0 1 0 1.0</diffuse>
+            <specular>0 1 0 1.0</specular>
+            <emissive>0 1 0 1.0</emissive>
+          </material>
+        <geometry>
+          <sphere>
+            <radius>0.05</radius>
+          </sphere>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+
+  <model name="sphere">
+  <pose>15 0.05 0 0 0 0</pose>
+
+    <link name="link">
+    <inertial>
+        <mass>0.25</mass>
+        <inertia>
+          <ixx>0.00169</ixx>
+          <iyy>0.00169</iyy>
+          <izz>0.00169</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+      <collision name="body_collision">
+        <geometry>
+          <sphere>
+            <radius>0.05</radius>
+          </sphere>
+        </geometry>
+      </collision>
+      <visual name="v1">
+
+        <material>
+            <ambient>0 1 0 1.0</ambient>
+            <diffuse>0 1 0 1.0</diffuse>
+            <specular>0 1 0 1.0</specular>
+            <emissive>0 1 0 1.0</emissive>
+          </material>
+        <geometry>
+          <sphere>
+            <radius>0.05</radius>
+          </sphere>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+
+
+    <model name="sphere">
+  <pose>5 0.05 0 0 0 0</pose>
+
+    <link name="link">
+    <inertial>
+        <mass>0.25</mass>
+        <inertia>
+          <ixx>0.00169</ixx>
+          <iyy>0.00169</iyy>
+          <izz>0.00169</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+      <collision name="body_collision">
+        <geometry>
+          <sphere>
+            <radius>0.05</radius>
+          </sphere>
+        </geometry>
+      </collision>
+      <visual name="v1">
+
+        <material>
+            <ambient>1 0 0 1.0</ambient>
+            <diffuse>1 0 0 1.0</diffuse>
+            <specular>1 0 0 1.0</specular>
+            <emissive>1 0 0 1.0</emissive>
+          </material>
+        <geometry>
+          <sphere>
+            <radius>0.05</radius>
+          </sphere>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+
+
+     <model name="sphere">
+  <pose>24.95 0.05 0 0 0 0</pose>
+
+    <link name="link">
+    <inertial>
+        <mass>0.25</mass>
+        <inertia>
+          <ixx>0.00169</ixx>
+          <iyy>0.00169</iyy>
+          <izz>0.00169</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+      <collision name="body_collision">
+        <geometry>
+          <sphere>
+            <radius>0.05</radius>
+          </sphere>
+        </geometry>
+      </collision>
+      <visual name="v1">
+
+        <material>
+            <ambient>1 0 0 1.0</ambient>
+            <diffuse>1 0 0 1.0</diffuse>
+            <specular>1 0 0 1.0</specular>
+            <emissive>1 0 0 1.0</emissive>
+          </material>
+        <geometry>
+          <sphere>
+            <radius>0.05</radius>
+          </sphere>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+
+
+  <model name="sphere">
+  <pose>24.95 5 0 0 0 0</pose>
+
+    <link name="link">
+    <inertial>
+        <mass>0.25</mass>
+        <inertia>
+          <ixx>0.00169</ixx>
+          <iyy>0.00169</iyy>
+          <izz>0.00169</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+      <collision name="body_collision">
+        <geometry>
+          <sphere>
+            <radius>0.05</radius>
+          </sphere>
+        </geometry>
+      </collision>
+      <visual name="v1">
+
+        <material>
+            <ambient>0 1 0 1.0</ambient>
+            <diffuse>0 1 0 1.0</diffuse>
+            <specular>0 1 0 1.0</specular>
+            <emissive>0 1 0 1.0</emissive>
+          </material>
+        <geometry>
+          <sphere>
+            <radius>0.05</radius>
+          </sphere>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+
+
+  <model name="sphere">
+  <pose>24.95 -5 0 0 0 0</pose>
+
+    <link name="link">
+    <inertial>
+        <mass>0.25</mass>
+        <inertia>
+          <ixx>0.00169</ixx>
+          <iyy>0.00169</iyy>
+          <izz>0.00169</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+      <collision name="body_collision">
+        <geometry>
+          <sphere>
+            <radius>0.05</radius>
+          </sphere>
+        </geometry>
+      </collision>
+      <visual name="v1">
+
+        <material>
+            <ambient>0 1 0 1.0</ambient>
+            <diffuse>0 1 0 1.0</diffuse>
+            <specular>0 1 0 1.0</specular>
+            <emissive>0 1 0 1.0</emissive>
+          </material>
+        <geometry>
+          <sphere>
+            <radius>0.05</radius>
+          </sphere>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+
+  </world>
+</sdf>

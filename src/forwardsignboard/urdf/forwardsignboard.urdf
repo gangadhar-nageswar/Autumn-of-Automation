@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="forwardsignboard">
+  
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.50121 0.53349 0.95599"
+        rpy="0 0 0" />
+      <mass
+        value="0.37699" />
+      <inertia
+        ixx="0.045248"
+        ixy="-4.3711E-36"
+        ixz="0"
+        iyy="1.885E-05"
+        iyz="7.209E-36"
+        izz="0.045248" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forwardsignboard/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forwardsignboard/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="board">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="2.5133" />
+      <inertia
+        ixx="0.025217"
+        ixy="0"
+        ixz="-9.8743E-20"
+        iyy="0.025217"
+        iyz="-2.6432E-20"
+        izz="0.050265" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forwardsignboard/meshes/board.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forwardsignboard/meshes/board.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="board_pole"
+    type="fixed">
+    <origin
+      xyz="0.503918616759268 -0.95557205962621 1.33326592295589"
+      rpy="-1.5707963267949 -1.04695290836159 3.14159265358979" />
+    <parent
+      link="base_link" />
+    <child
+      link="board" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="arrow">
+    <inertial>
+      <origin
+        xyz="0.015411 -0.0015581 0.011"
+        rpy="0 0 0" />
+      <mass
+        value="0.016125" />
+      <inertia
+        ixx="9.5623E-06"
+        ixy="8.6527E-21"
+        ixz="-7.5369E-24"
+        iyy="5.8075E-05"
+        iyz="-2.0801E-23"
+        izz="6.7634E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forwardsignboard/meshes/arrow.STL" scale="1.4 1.5 1.5"/>
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forwardsignboard/meshes/arrow.STL" scale="1.4 1.5 1.5"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="arr_board"
+    type="fixed">
+    <origin
+      xyz="0 0.00999999999999979 0"
+      rpy="0 0 -2.09463974522821" />
+    <parent
+      link="board" />
+    <child
+      link="arrow" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <gazebo reference="board">
+    <material>Gazebo/Red</material>
+  </gazebo>
+
+  <gazebo reference="arrow">
+    <material>Gazebo/Yellow</material>
+  </gazebo>
+
+
+</robot>
